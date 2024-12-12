@@ -1,0 +1,21 @@
+{
+  "input": {
+    "positive_prompt": "a cat playing with yarn, cute, fluffy, detailed fur",
+    "negative_prompt": "",
+    "width": 848,
+    "height": 480,
+    "seed": 42,
+    "steps": 40,
+    "cfg": 6,
+    "num_frames": 31,
+    "vae": {
+      "enable_vae_tiling": false,
+      "tile_sample_min_width": 312,
+      "tile_sample_min_height": 160,
+      "tile_overlap_factor_width": 0.25,
+      "tile_overlap_factor_height": 0.25,
+      "auto_tile_size": false,
+      "frame_batch_size": 8
+    }
+  }
+}

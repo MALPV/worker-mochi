@@ -1,0 +1,18 @@
+services:
+  worker:
+    build: .
+    image: runpod/worker-mochi
+    environment:
+      - BLOB_READ_WRITE_TOKEN=${BLOB_READ_WRITE_TOKEN} # From .env file
+      - SERVE_API_LOCALLY=true # Keep container running
+    volumes:
+      - ./test_input.json:/test_input.json
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    ports:
+      - "8000:8000" # For API access

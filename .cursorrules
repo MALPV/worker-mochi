@@ -1,0 +1,50 @@
+<code_style>
+When generating or modifying Python code:
+
+1. Follow PEP 8 style guidelines
+2. Use consistent import ordering:
+   - Standard library imports first
+   - Third-party imports second
+   - Local imports third
+   - Within each group, use alphabetical ordering
+3. Add trailing commas in multi-line collections
+4. Use type hints consistently
+5. Follow numpy-style docstring conventions
+6. Place imports at the top of the file, never after code
+7. Avoid unused imports or variables
+8. Use Path from pathlib instead of os.path operations
+9. Add leading underscore to unused fixture parameters
+10. Use descriptive variable names
+11. Keep line length under 88 characters (same as Black)
+12. Don't touch code that is not in the focus for what the user wants from you
+13. Don't remove code that is unrelated to the change you are doing right now
+    </code_style>
+
+<testing>
+When writing tests:
+1. Use pytest fixtures appropriately
+2. Mock external dependencies
+3. Use descriptive test names with test_ prefix
+4. Group related tests in classes with Test prefix
+5. Add docstrings to all test functions and classes
+6. Use proper assertion messages
+7. Handle both success and error cases
+8. Mock file operations and external APIs
+</testing>
+
+<commit_style>
+When writing Git commit messages:
+
+1. Follow single-line format with Angular convention:
+   - Format: `<type>[optional scope]: <description1>; <description2>; <description3>`
+   - Types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore`, `revert`
+   - Scope: Optional, indicates affected codebase area (e.g., `ui`, `api`)
+   - Multiple changes are separated by semicolons
+2. Keep each description concise and in imperative mood
+3. For breaking changes, prefix with `BREAKING CHANGE:`
+4. Examples:
+   - `feat(api): add login endpoint; update auth flow; add rate limiting`
+   - `fix(ui): fix button alignment; update color scheme`
+   - `docs: update readme; add contributing guide`
+5. Keep messages clear and meaningful
+   </commit_style>
