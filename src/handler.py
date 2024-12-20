@@ -109,6 +109,10 @@ def upload_file_to_uploadthing(
             )
             presigned_response.raise_for_status()
             
+            # Add response content logging
+            print(f"Presigned response status: {presigned_response.status_code}")
+            print(f"Presigned response content: {presigned_response.text}")
+            
             presigned = presigned_response.json()["data"][0]
             upload_url = presigned["url"]
             fields = presigned["fields"]
@@ -117,6 +121,10 @@ def upload_file_to_uploadthing(
             files = {"file": file_content}
             upload_response = requests.post(upload_url, data=fields, files=files)
             upload_response.raise_for_status()
+            
+            # Add upload response logging
+            print(f"Upload response status: {upload_response.status_code}")
+            print(f"Upload response content: {upload_response.text}")
 
             print(f"File uploaded successfully: {presigned['fileUrl']}")
             return presigned_response, upload_response, new_file_name
@@ -124,6 +132,9 @@ def upload_file_to_uploadthing(
         except Exception as e:
             last_error = e
             print(f"Upload attempt {attempt + 1} failed: {str(e)}")
+            # Add more detailed error information
+            if isinstance(e, requests.exceptions.RequestException):
+                print(f"Request error details: {e.response.text if e.response else 'No response'}")
             attempt += 1
 
     raise last_error
@@ -214,7 +225,7 @@ def generate(input):
 
             return {
                 "result": video_url,
-                "status": "DONE"
+                "status": "SUCCESS"
             }
         except Exception as e:
             print(f"Upload failed: {str(e)}")
@@ -226,7 +237,9 @@ def generate(input):
     except Exception as e:
         print(f"Generation failed: {str(e)}")
         return {
-            "result": f"FAILED: {str(e)}",
+            "status": "ERROR",
+            "error": str(e),
+            "result": None
         }
 
 
