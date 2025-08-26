@@ -72,8 +72,10 @@ RUN pip install --no-cache-dir \
     git+https://github.com/timpietrusky/vercel_blob.git
 
 # Clone ComfyUI and custom nodes
-RUN git clone https://github.com/comfyanonymous/ComfyUI /ComfyUI && \
-    git clone -b dev https://github.com/camenduru/ComfyUI-MochiWrapper /ComfyUI/custom_nodes/ComfyUI-MochiWrapper && \
+RUN git clone https://github.com/comfyanonymous/ComfyUI /ComfyUI && \    
+    cd /ComfyUI && git checkout v0.3.8 && \ 
+    pip install -r requirements.txt && \ 
+    git clone -b dev https://github.com/camenduru/ComfyUI-MochiWrapper /ComfyUI/custom_nodes/ComfyUI-MochiWrapper && \ 
     git clone https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite /ComfyUI/custom_nodes/ComfyUI-VideoHelperSuite && \
     git clone https://github.com/kijai/ComfyUI-KJNodes /ComfyUI/custom_nodes/ComfyUI-KJNodes && \
     git clone https://github.com/ltdrdata/ComfyUI-Manager /ComfyUI/custom_nodes/ComfyUI-Manager && \
